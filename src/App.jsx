@@ -8,7 +8,7 @@ import {
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import LandingPage from "./components/LandingPage"; // adapte le chemin si nécessaire
+import LandingPage from "./components/landingPage"; // adapte le chemin si nécessaire
 
 // Auth Pages
 import LoginPage from "./modules/auth/LoginPage";
