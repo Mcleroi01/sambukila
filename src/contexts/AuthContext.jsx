@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authService } from '../services/auth';
+import { firestoreService } from '../services/firestore';
 
 const AuthContext = createContext();
 
@@ -13,11 +14,23 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = authService.onAuthStateChange((user) => {
-      setUser(user);
+    const unsubscribe = authService.onAuthStateChange(async (user) => {
+      if (user) {
+        const { success, user: userProfile } = await firestoreService.getUser(user.uid);
+        if (success) {
+          setUser({ ...user, ...userProfile });
+          setRole(userProfile.role);
+        } else {
+          setUser(user);
+        }
+      } else {
+        setUser(null);
+        setRole(null);
+      }
       setLoading(false);
     });
 
@@ -38,12 +51,14 @@ export const AuthProvider = ({ children }) => {
     const result = await authService.logout();
     if (result.success) {
       setUser(null);
+      setRole(null);
     }
     return result;
   };
 
   const value = {
     user,
+    role,
     login,
     register,
     logout,

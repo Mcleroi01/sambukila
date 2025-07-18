@@ -28,6 +28,15 @@ export const firestoreService = {
     }
   },
 
+  createUser: async (userId, userData) => {
+    try {
+      await setDoc(doc(db, "users", userId), userData);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  },
+
   getUserEvents: async (userId) => {
     try {
       const q = query(
@@ -67,6 +76,21 @@ export const firestoreService = {
         return { success: true, event: { id: docSnap.id, ...docSnap.data() } };
       } else {
         return { success: false, error: "Event not found" };
+      }
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Users
+  getUser: async (userId) => {
+    try {
+      const docRef = doc(db, "users", userId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return { success: true, user: { id: docSnap.id, ...docSnap.data() } };
+      } else {
+        return { success: false, error: "User not found" };
       }
     } catch (error) {
       return { success: false, error: error.message };
