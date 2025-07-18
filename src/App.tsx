@@ -15,6 +15,8 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="create-event" element={<CreateEvent />} />
           <Route path="event/:eventId/guests" element={<GuestManagement />} />
+          {/* <Route path="event/:eventId" element={<LandingPage />} /> */}
+          <Route path="*" element={<div>404 Not Found</div>} />
         </Route>
       </Routes>
     </Router>

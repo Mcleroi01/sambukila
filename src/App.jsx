@@ -1,19 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import LandingPage from "./components/LandingPage"; // adapte le chemin si nécessaire
 
 // Auth Pages
-import LoginPage from './modules/auth/LoginPage';
-import RegisterPage from './modules/auth/RegisterPage';
+import LoginPage from "./modules/auth/LoginPage";
+import RegisterPage from "./modules/auth/RegisterPage";
 
 // Event Pages
-import EventListPage from './modules/events/EventListPage';
-import EventCreatePage from './modules/events/EventCreatePage';
+import EventListPage from "./modules/events/EventListPage";
+import EventCreatePage from "./modules/events/EventCreatePage";
 
 // Guest Pages
-import GuestListPage from './modules/guests/GuestListPage';
-import InvitePublicView from './modules/guests/InvitePublicView';
+import GuestListPage from "./modules/guests/GuestListPage";
+import InvitePublicView from "./modules/guests/InvitePublicView";
 
 function App() {
   return (
@@ -61,8 +68,10 @@ function App() {
             }
           />
 
+          <Route path="/landing" element={<LandingPage />} />
+
           {/* Default redirect */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/" element={<Navigate to="/landing" replace />} />
         </Routes>
       </Router>
     </AuthProvider>
