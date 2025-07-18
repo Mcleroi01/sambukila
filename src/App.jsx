@@ -21,6 +21,7 @@ import EventCreatePage from "./modules/events/EventCreatePage";
 // Guest Pages
 import GuestListPage from "./modules/guests/GuestListPage";
 import InvitePublicView from "./modules/guests/InvitePublicView";
+import GuestRoute from "./components/GuestRoute";
 
 function App() {
   return (
@@ -28,8 +29,23 @@ function App() {
       <Router>
         <Routes>
           {/* Public Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/login"
+            element={
+              <GuestRoute>
+                <LoginPage />
+              </GuestRoute>
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <GuestRoute>
+                <RegisterPage />
+              </GuestRoute>
+            }
+          />
           <Route path="/guest/:guestId/public" element={<InvitePublicView />} />
           {/* Protected Routes */}
           <Route
