@@ -414,7 +414,7 @@ function LandingPage() {
           <div className="text-center">
             <div className="mb-8">
               <span className="text-2xl font-light tracking-wider">
-                MOMENTS
+                SAMBUKILA
               </span>
             </div>
             <div className="flex justify-center space-x-8 text-sm">
