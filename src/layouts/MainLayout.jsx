@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { Heart, Calendar, Users, LogOut, Home, Menu } from "lucide-react";
+import { Heart, Calendar, Users, LogOut, Home, Menu, User } from "lucide-react";
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase";
 
@@ -12,6 +12,7 @@ const MainLayout = ({ children }) => {
 
   const [userData, setUserData] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -99,15 +100,39 @@ const MainLayout = ({ children }) => {
                 </Link>
               )}
 
-              <div className="flex items-center space-x-2 text-sm text-gray-600">
-                <span>{user?.email}</span>
+              <div className="relative">
                 <button
-                  onClick={handleLogout}
-                  className="flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 transition-colors"
+                  onClick={() => setProfileOpen((open) => !open)}
+                  className="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-purple-50 transition-colors focus:outline-none"
+                  aria-label="Ouvrir le menu profil"
                 >
-                  <LogOut className="h-4 w-4" />
-                  <span>Logout</span>
+                  <User className="h-5 w-5" />
+                  <span className="hidden sm:inline">{user?.email}</span>
                 </button>
+                {profileOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50 border border-gray-100">
+                    <div className="px-4 py-2 text-xs text-gray-500">
+                      {user?.email}
+                    </div>
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50"
+                      onClick={() => setProfileOpen(false)}
+                    >
+                      Profil
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setProfileOpen(false);
+                        handleLogout();
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                    >
+                      <LogOut className="inline h-4 w-4 mr-1" />
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

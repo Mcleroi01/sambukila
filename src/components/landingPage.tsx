@@ -30,12 +30,11 @@ function LandingPage() {
                 SAMBUKILA
               </span>
             </div>
-
             <button
               onClick={handleWhatsAppContact}
               className="border border-white text-white px-6 py-2 text-xs font-light tracking-[0.15em] uppercase hover:bg-white hover:text-black transition-all duration-500 hover:scale-105 hover:shadow-lg"
             >
-              Book Now
+              Fale Conosco
             </button>
           </div>
         </div>
@@ -68,13 +67,18 @@ function LandingPage() {
         <div className="relative text-center text-white z-10 animate-fade-in">
           <div className="mb-8">
             <p className="text-xs font-light tracking-[0.4em] mb-8 opacity-90 uppercase animate-slide-up">
-              WEDDING PLANNER
+              SUA PLATAFORMA DE EVENTOS
             </p>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-[1.1] tracking-wide animate-slide-up-delay">
-              Your Dream Wedding
+              Convide, Organize e Celebre
               <br />
-              <span className="font-light italic">Made Perfect</span>
+              <span className="font-light italic">Eventos Inesquecíveis</span>
             </h1>
+            <p className="text-lg mt-4 max-w-2xl mx-auto opacity-90">
+              Gerencie convites, listas de convidados e confirmações para
+              qualquer tipo de evento: aniversários, casamentos, conferências,
+              festas, workshops e muito mais.
+            </p>
           </div>
         </div>
 
@@ -97,10 +101,10 @@ function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4">
             <p className="text-sm font-light tracking-widest text-gray-500 mb-8">
-              — BENEFIT —
+              — BENEFÍCIOS —
             </p>
             <h2 className="text-4xl font-light text-gray-900 mb-16 max-w-2xl mx-auto leading-relaxed">
-              Perfect moments simply reveal themselves
+              Momentos perfeitos para todos os tipos de eventos
             </h2>
           </div>
 
@@ -108,21 +112,21 @@ function LandingPage() {
             {[
               {
                 icon: Clock,
-                title: "On Time and Efficient",
+                title: "Organização Pontual",
                 description:
-                  "A wedding planner can help you manage your wedding timeline and ensure everything runs smoothly on your special day, coordinating the quality or experience of your wedding.",
+                  "Gerencie o cronograma do seu evento e garanta que tudo aconteça no tempo certo, sem estresse.",
               },
               {
                 icon: Target,
-                title: "Budget Management",
+                title: "Controle de Orçamento",
                 description:
-                  "A wedding planner can help you manage your wedding budget and ensure you get the most value for your money, without compromising the quality or experience of your wedding.",
+                  "Acompanhe os custos e otimize recursos para qualquer tipo de evento, do início ao fim.",
               },
               {
                 icon: Shield,
-                title: "Handling Unexpected Situations",
+                title: "Gestão de Imprevistos",
                 description:
-                  "By using a wedding planner, you can rest easy knowing that if any issues arise on your wedding day, they will be handled quickly and efficiently.",
+                  "Conte com ferramentas para lidar rapidamente com mudanças ou situações inesperadas.",
               },
             ].map((benefit, index) => (
               <div
@@ -151,28 +155,25 @@ function LandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="animate-slide-in-left">
               <p className="text-sm font-light tracking-widest text-gray-500 mb-8">
-                — SERVICES —
+                — SERVIÇOS —
               </p>
               <h2 className="text-4xl font-light text-gray-900 mb-8 leading-relaxed">
-                Create an unforgettable atmosphere away from the crowd, for your
-                special day
+                Crie experiências únicas para qualquer ocasião
               </h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Welcome to Glasgow's most iconic Neoclassical building that is
-                events of all occasions. The stunning venue boasts impressive
-                and sophisticated architecture that is sure to leave a lasting
-                impression on your guests.
+                Seja para festas de aniversário, casamentos, eventos
+                corporativos, workshops ou encontros familiares, a Sambukila
+                oferece soluções digitais para facilitar sua organização.
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Built in 1844 and named within the grandeur of the City, the
-                rich history of Glasgow contributes to its unique atmosphere and
-                beauty.
+                Convide, acompanhe confirmações, envie lembretes e surpreenda
+                seus convidados com praticidade e inovação.
               </p>
             </div>
             <div className="relative animate-slide-in-right">
               <img
-                src="https://www.shutterstock.com/shutterstock/videos/1109459565/thumb/1.jpg?ip=x480"
-                alt="Wedding venue"
+                src="https://images.unsplash.com/photo-1515168833906-d2a3b82b1a5e?auto=format&fit=crop&w=800&q=80"
+                alt="Evento"
                 className="w-full h-96 object-cover rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-500 hover:scale-105 transform transition-transform duration-500"
               />
             </div>
@@ -188,7 +189,7 @@ function LandingPage() {
               — SAMBUKILA —
             </p>
             <h2 className="text-4xl font-light text-gray-900 mb-8 leading-relaxed">
-              Découvrez notre plateforme d'invitations électroniques
+              Descubra nossa plataforma de convites eletrônicos
             </h2>
           </div>
 
@@ -218,29 +219,29 @@ function LandingPage() {
                         Sambukila
                       </h3>
                       <p className="text-xs text-gray-500 tracking-wider">
-                        INVITATION PLATFORM
+                        PLATAFORMA DE CONVITES
                       </p>
                     </div>
                     <h4 className="text-xl font-light text-gray-700 mb-2">
-                      Purce & Carlo
+                      Evento Exemplo
                     </h4>
                     <p className="text-sm text-gray-600 tracking-wider">
-                      INVITE YOU TO THEIR WEDDING
+                      Você está convidado para o nosso evento especial!
                     </p>
                   </div>
 
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center justify-center space-x-2 text-gray-700">
                       <Calendar className="h-4 w-4 text-rose-400" />
-                      <span className="text-sm">June 15, 2024</span>
+                      <span className="text-sm">15 de Junho de 2024</span>
                     </div>
                     <div className="flex items-center justify-center space-x-2 text-gray-700">
                       <MapPin className="h-4 w-4 text-rose-400" />
-                      <span className="text-sm">Versailles Castle</span>
+                      <span className="text-sm">Centro de Eventos</span>
                     </div>
                     <div className="flex items-center justify-center space-x-2 text-gray-700">
                       <Users className="h-4 w-4 text-rose-400" />
-                      <span className="text-sm">Reception at 6:00 PM</span>
+                      <span className="text-sm">Recepção às 18:00</span>
                     </div>
                   </div>
 
@@ -248,7 +249,7 @@ function LandingPage() {
                     <div className="bg-white p-4 rounded-lg shadow-inner mb-4">
                       <QrCode className="h-16 w-16 text-gray-600 mx-auto mb-2" />
                       <p className="text-xs text-gray-500">
-                        Unique QR Code for confirmation
+                        QR Code único para confirmação de presença
                       </p>
                     </div>
                     <button
@@ -261,13 +262,13 @@ function LandingPage() {
                       }}
                       className="bg-rose-400 text-white px-6 py-2 rounded-full text-sm hover:bg-rose-500 transition-colors duration-300 hover:scale-105 transform"
                     >
-                      View Full Invitation
+                      Ver Convite Completo
                     </button>
                   </div>
 
                   <div className="mt-4 pt-4 border-t border-rose-200">
                     <p className="text-xs text-gray-500">
-                      Click to preview the full example
+                      Clique para visualizar o exemplo completo
                     </p>
                   </div>
                 </div>
@@ -278,7 +279,7 @@ function LandingPage() {
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-light text-gray-900 mb-6">
-                  Why choose Sambukila?
+                  Por que escolher a Sambukila?
                 </h3>
               </div>
 
@@ -286,21 +287,21 @@ function LandingPage() {
                 {[
                   {
                     icon: QrCode,
-                    title: "Unique QR Code",
+                    title: "QR Code Exclusivo",
                     description:
-                      "Each guest receives a personalized QR code for easy RSVP management",
+                      "Cada convidado recebe um QR code personalizado para confirmação de presença.",
                   },
                   {
                     icon: Smartphone,
-                    title: "Mobile Delivery",
+                    title: "Entrega Digital",
                     description:
-                      "Invitations are sent directly to your guests' phones via WhatsApp or SMS",
+                      "Convites enviados diretamente para o WhatsApp ou SMS dos seus convidados.",
                   },
                   {
                     icon: Send,
-                    title: "Simplified Management",
+                    title: "Gestão Simplificada",
                     description:
-                      "Create your event, add your guests, and we'll handle the rest",
+                      "Crie seu evento, adicione convidados e acompanhe tudo em tempo real.",
                   },
                 ].map((feature, index) => (
                   <div
@@ -332,14 +333,14 @@ function LandingPage() {
                   }
                   className="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2 w-full justify-center mb-4"
                 >
-                  <span>View Invitation Example</span>
+                  <span>Ver Exemplo de Convite</span>
                   <Heart className="h-4 w-4" />
                 </button>
                 <button
                   onClick={handleWhatsAppContact}
                   className="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2 w-full justify-center mb-4"
                 >
-                  <span>Contact us on WhatsApp</span>
+                  <span>Fale conosco no WhatsApp</span>
                   <Send className="h-4 w-4" />
                 </button>
               </div>
@@ -353,18 +354,18 @@ function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-light text-gray-900 mb-4">
-              About Company
+              Sobre a Sambukila
             </h2>
             <p className="text-sm font-light tracking-widest text-gray-500">
-              — OUR COMPANY —
+              — NOSSA EMPRESA —
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative animate-slide-in-left">
               <img
-                src="https://i0.wp.com/www.orchardavenueevents.com/wp-content/uploads/2025/01/RL82638.jpg?resize=1024%2C681&ssl=1"
-                alt="Wedding couple"
+                src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80"
+                alt="Evento"
                 className="w-full h-96 object-cover rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
               />
               <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center hover:bg-amber-200 transition-colors duration-300 hover:scale-110 transform transition-transform duration-300">
@@ -373,23 +374,22 @@ function LandingPage() {
             </div>
             <div className="animate-slide-in-right">
               <h3 className="text-3xl font-light text-gray-900 mb-8 leading-relaxed">
-                We are a team of passionate and experienced wedding planners
+                Somos apaixonados por eventos e tecnologia
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Our team of wedding planners is passionate about creating
-                unforgettable wedding experiences. We understand that every
-                wedding is unique, and we work closely with our clients to
-                ensure that their vision becomes a reality.
+                Nossa equipe é dedicada a criar experiências inesquecíveis para
+                todos os tipos de eventos. Trabalhamos para que você possa focar
+                no que realmente importa: celebrar!
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Our approach is personal, friendly, and professional, and we
-                strive to make the planning process as stress-free as possible.
+                Atendimento personalizado, tecnologia de ponta e praticidade
+                para você e seus convidados.
               </p>
               <button
                 onClick={handleWhatsAppContact}
                 className="border border-gray-300 text-gray-700 px-8 py-3 rounded hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-md"
               >
-                Book Now
+                Fale Conosco
               </button>
             </div>
           </div>
@@ -400,10 +400,10 @@ function LandingPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-light tracking-widest text-gray-500 mb-8">
-            — SERVICES —
+            — SERVIÇOS —
           </p>
           <h2 className="text-4xl font-light text-gray-900 mb-16 leading-relaxed">
-            We are committed to providing
+            Compromisso com a inovação e a excelência em eventos
           </h2>
         </div>
       </section>
@@ -422,29 +422,27 @@ function LandingPage() {
                 href="#"
                 className="hover:text-gray-300 transition-colors duration-300"
               >
-                Privacy Policy
+                Política de Privacidade
               </a>
               <a
                 href="#"
                 className="hover:text-gray-300 transition-colors duration-300"
               >
-                Terms of Service
+                Termos de Serviço
               </a>
               <a
                 href="#"
                 className="hover:text-gray-300 transition-colors duration-300"
               >
-                Contact
+                Contato
               </a>
             </div>
             <div className="mt-8 pt-8 border-t border-gray-800 text-gray-400 text-sm">
-              <p>&copy; 2025 SAMBUKILA. All rights reserved.</p>
+              <p>&copy; 2025 SAMBUKILA. Todos os direitos reservados.</p>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* Custom CSS for animations */}
     </div>
   );
 }
