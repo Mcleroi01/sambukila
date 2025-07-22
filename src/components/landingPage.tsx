@@ -172,7 +172,7 @@ function LandingPage() {
             </div>
             <div className="relative animate-slide-in-right">
               <img
-                src="https://images.unsplash.com/photo-1515168833906-d2a3b82b1a5e?auto=format&fit=crop&w=800&q=80"
+                src="https://media.qrtiger.com/blog/2023/06/image3jpg_800_84_23.jpeg"
                 alt="Evento"
                 className="w-full h-96 object-cover rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-500 hover:scale-105 transform transition-transform duration-500"
               />
@@ -325,18 +325,6 @@ function LandingPage() {
 
               <div className="pt-6">
                 <button
-                  onClick={() =>
-                    window.open(
-                      "https://sambukila.netlify.app/guest/195403e4-fb5d-458c-ab46-a1bb794e3c29/public",
-                      "_blank"
-                    )
-                  }
-                  className="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2 w-full justify-center mb-4"
-                >
-                  <span>Ver Exemplo de Convite</span>
-                  <Heart className="h-4 w-4" />
-                </button>
-                <button
                   onClick={handleWhatsAppContact}
                   className="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2 w-full justify-center mb-4"
                 >
@@ -364,7 +352,7 @@ function LandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative animate-slide-in-left">
               <img
-                src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80"
+                src="https://images.sympla.com.br/668849f3b8d1b-xs.jpg"
                 alt="Evento"
                 className="w-full h-96 object-cover rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
               />
