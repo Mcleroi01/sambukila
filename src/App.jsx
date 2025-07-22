@@ -57,7 +57,7 @@ const AppRoutes = () => {
         path="/dashboard"
         element={
           <ProtectedRoute>
-            {role === 'superadmin' ? <UserManagementPage /> : <EventListPage />}
+             <EventListPage />
           </ProtectedRoute>
         }
       />

@@ -3,9 +3,28 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
+  updatePassword,
 } from "firebase/auth";
 import { auth, db } from "./firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+
+let currentUser = null;
+
+onAuthStateChanged(auth, async (firebaseUser) => {
+  if (firebaseUser) {
+    const userRef = doc(db, "users", firebaseUser.uid);
+    const userSnap = await getDoc(userRef);
+    if (userSnap.exists()) {
+      const userData = userSnap.data();
+      currentUser = { ...firebaseUser, role: userData.role };
+    } else {
+      currentUser = firebaseUser;
+    }
+  } else {
+    currentUser = null;
+  }
+});
 
 export const authService = {
   // Login user
@@ -77,13 +96,13 @@ export const authService = {
   // Update user profile
   updateUserProfile: async ({ displayName, photoURL }) => {
     const user = auth.currentUser;
-    if (!user) return { success: false, error: 'No user logged in' };
+    if (!user) return { success: false, error: "No user logged in" };
 
     try {
       await updateProfile(user, { displayName, photoURL });
 
       // Met à jour aussi Firestore si tu utilises une collection 'users'
-      const userRef = doc(db, 'users', user.uid);
+      const userRef = doc(db, "users", user.uid);
       await updateDoc(userRef, { displayName, photoURL });
 
       return { success: true };
@@ -95,7 +114,7 @@ export const authService = {
   // Update user password
   updateUserPassword: async (newPassword) => {
     const user = auth.currentUser;
-    if (!user) return { success: false, error: 'No user logged in' };
+    if (!user) return { success: false, error: "No user logged in" };
 
     try {
       await updatePassword(user, newPassword);
@@ -116,9 +135,7 @@ export const authService = {
   },
 
   // Get current user from Firebase Auth
-  getCurrentUser: () => {
-    return auth.currentUser;
-  },
+  getCurrentUser: () => currentUser,
 
   // Get current user data from Firestore
   getUserData: async (uid) => {
@@ -132,10 +149,5 @@ export const authService = {
     } catch (error) {
       return { success: false, error: error.message };
     }
-  },
-
-  // Listen to auth state changes
-  onAuthStateChange: (callback) => {
-    return onAuthStateChanged(auth, callback);
   },
 };

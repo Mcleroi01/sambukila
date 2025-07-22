@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { collection, addDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db, storage } from '../lib/firebase';
-import { WeddingEvent } from '../types';
-import { Calendar, Clock, MapPin, MessageSquare, Upload, Save } from 'lucide-react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../lib/firebase";
+import { WeddingEvent } from "../types";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  MessageSquare,
+  Upload,
+  Save,
+} from "lucide-react";
 
 const CreateEvent: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
-    coupleName: '',
-    eventName: '',
-    date: '',
-    time: '',
-    location: '',
-    message: ''
+    coupleName: "",
+    eventName: "",
+    date: "",
+    time: "",
+    location: "",
+    message: "",
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -37,25 +46,28 @@ const CreateEvent: React.FC = () => {
     setLoading(true);
 
     try {
-      let backgroundImageUrl = '';
-      
+      let backgroundImageUrl = "";
+
       if (imageFile) {
-        const imageRef = ref(storage, `event-backgrounds/${Date.now()}-${imageFile.name}`);
+        const imageRef = ref(
+          storage,
+          `event-backgrounds/${Date.now()}-${imageFile.name}`
+        );
         const snapshot = await uploadBytes(imageRef, imageFile);
         backgroundImageUrl = await getDownloadURL(snapshot.ref);
       }
 
-      const eventData: Omit<WeddingEvent, 'id'> = {
+      const eventData: Omit<WeddingEvent, "id"> = {
         ...formData,
         backgroundImage: backgroundImageUrl,
-        createdAt: new Date()
+        createdAt: new Date(),
       };
 
-      const docRef = await addDoc(collection(db, 'events'), eventData);
+      const docRef = await addDoc(collection(db, "events"), eventData);
       navigate(`/event/${docRef.id}/guests`);
     } catch (error) {
-      console.error('Error creating event:', error);
-      alert('Error creating event. Please try again.');
+      console.error("Error creating event:", error);
+      alert("Error creating event. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -65,8 +77,12 @@ const CreateEvent: React.FC = () => {
     <div className="max-w-2xl mx-auto">
       <div className="bg-white rounded-xl shadow-md overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-purple-600 to-pink-600">
-          <h1 className="text-2xl font-bold text-white">Create Wedding Event</h1>
-          <p className="text-purple-100 mt-1">Set up your special day details</p>
+          <h1 className="text-2xl font-bold text-white">
+            Create Wedding Event
+          </h1>
+          <p className="text-purple-100 mt-1">
+            Set up your special day details
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
@@ -187,7 +203,7 @@ const CreateEvent: React.FC = () => {
           <div className="flex justify-end space-x-4 pt-6">
             <button
               type="button"
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               className="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
             >
               Cancel
@@ -202,7 +218,7 @@ const CreateEvent: React.FC = () => {
               ) : (
                 <Save className="h-4 w-4" />
               )}
-              <span>{loading ? 'Creating...' : 'Create Event'}</span>
+              <span>{loading ? "Creating..." : "Create Event"}</span>
             </button>
           </div>
         </form>

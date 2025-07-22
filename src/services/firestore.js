@@ -19,7 +19,7 @@ export const firestoreService = {
       const customId = uuidv4(); // Generate a unique ID
       await setDoc(doc(db, "events", customId), {
         ...eventData,
-        id: customId, // optionnel, si tu veux inclure l'id dans les données
+        id: customId,
         createdAt: new Date(),
       });
       return { success: true, id: customId };
@@ -95,6 +95,11 @@ export const firestoreService = {
     } catch (error) {
       return { success: false, error: error.message };
     }
+  },
+
+  async getUsers() {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    return querySnapshot.docs.map(doc => doc.data());
   },
 
   // Guests
@@ -190,8 +195,6 @@ export const firestoreService = {
     return { success: false, error: error.message };
   }
 },
-
-
 
   importGuestsPdf: async (eventId, guestsData) => {
     try {

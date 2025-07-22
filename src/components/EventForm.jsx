@@ -1,31 +1,44 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, MessageSquare, Image, Save } from 'lucide-react';
-import { validators } from '../utils/validators';
+import React, { useState } from "react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  MessageSquare,
+  Image,
+  Save,
+  LayoutTemplate,
+  User,
+} from "lucide-react";
+import { validators } from "../utils/validators";
+import { useAuth } from "../contexts/AuthContext";
 
 const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
   const [formData, setFormData] = useState({
-    coupleName: initialData.coupleName || '',
-    eventTitle: initialData.eventTitle || '',
-    date: initialData.date || '',
-    time: initialData.time || '',
-    location: initialData.location || '',
-    customMessage: initialData.customMessage || '',
-    backgroundImageUrl: initialData.backgroundImageUrl || ''
+    coupleName: initialData.coupleName || "",
+    eventTitle: initialData.eventTitle || "",
+    date: initialData.date || "",
+    time: initialData.time || "",
+    location: initialData.location || "",
+    customMessage: initialData.customMessage || "",
+    backgroundImageUrl: initialData.backgroundImageUrl || "",
+    invitationModel: initialData.invitationModel || "classic",
+    address: initialData.address || "",
   });
   const [errors, setErrors] = useState({});
+  const { user } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
@@ -34,41 +47,58 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
     const newErrors = {};
 
     if (!validators.required(formData.coupleName)) {
-      newErrors.coupleName = 'Couple name is required';
+      newErrors.coupleName = "Couple name is required";
     }
 
     if (!validators.required(formData.eventTitle)) {
-      newErrors.eventTitle = 'Event title is required';
+      newErrors.eventTitle = "Event title is required";
     }
 
     if (!validators.required(formData.date)) {
-      newErrors.date = 'Date is required';
+      newErrors.date = "Date is required";
     }
 
     if (!validators.required(formData.time)) {
-      newErrors.time = 'Time is required';
+      newErrors.time = "Time is required";
     }
 
     if (!validators.required(formData.location)) {
-      newErrors.location = 'Location is required';
+      newErrors.location = "Location is required";
     }
 
     if (!validators.required(formData.customMessage)) {
-      newErrors.customMessage = 'Custom message is required';
+      newErrors.customMessage = "Custom message is required";
     }
 
-    if (formData.backgroundImageUrl && !validators.url(formData.backgroundImageUrl)) {
-      newErrors.backgroundImageUrl = 'Please enter a valid URL';
+    if (
+      formData.backgroundImageUrl &&
+      !validators.url(formData.backgroundImageUrl)
+    ) {
+      newErrors.backgroundImageUrl = "Please enter a valid URL";
+    }
+
+    if (!validators.required(formData.address)) {
+      newErrors.address = "Address is required";
+    }
+
+    if (!validators.required(formData.invitationModel)) {
+      newErrors.invitationModel = "Invitation model is required";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  if (!user) throw new Error("User not authenticated");
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit(formData);
+      onSubmit({
+        ...formData,
+        createdBy: user?.uid || "anonymous",
+      });
     }
   };
 
@@ -86,7 +116,7 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
             onChange={handleChange}
             placeholder="e.g., John & Jane"
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
-              errors.coupleName ? 'border-red-300' : 'border-gray-300'
+              errors.coupleName ? "border-red-300" : "border-gray-300"
             }`}
           />
           {errors.coupleName && (
@@ -105,7 +135,7 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
             onChange={handleChange}
             placeholder="e.g., Wedding Reception"
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
-              errors.eventTitle ? 'border-red-300' : 'border-gray-300'
+              errors.eventTitle ? "border-red-300" : "border-gray-300"
             }`}
           />
           {errors.eventTitle && (
@@ -126,7 +156,7 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
             value={formData.date}
             onChange={handleChange}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
-              errors.date ? 'border-red-300' : 'border-gray-300'
+              errors.date ? "border-red-300" : "border-gray-300"
             }`}
           />
           {errors.date && (
@@ -145,7 +175,7 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
             value={formData.time}
             onChange={handleChange}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
-              errors.time ? 'border-red-300' : 'border-gray-300'
+              errors.time ? "border-red-300" : "border-gray-300"
             }`}
           />
           {errors.time && (
@@ -166,12 +196,28 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
           onChange={handleChange}
           placeholder="e.g., Grand Ballroom, City Hotel"
           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
-            errors.location ? 'border-red-300' : 'border-gray-300'
+            errors.location ? "border-red-300" : "border-gray-300"
           }`}
         />
         {errors.location && (
           <p className="text-red-500 text-sm mt-1">{errors.location}</p>
         )}
+      </div>
+
+      <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">
+          <MapPin className="inline h-4 w-4 mr-1" />
+          Address
+        </label>
+        <input
+          type="text"
+          name="address"
+          value={formData.address}
+          onChange={handleChange}
+          placeholder="e.g., 123 Main Street, City, Country"
+          className="w-full px-4 py-3 border rounded-lg"
+          required
+        />
       </div>
 
       <div>
@@ -186,12 +232,32 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
           rows={4}
           placeholder="A personal message for your guests..."
           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
-            errors.customMessage ? 'border-red-300' : 'border-gray-300'
+            errors.customMessage ? "border-red-300" : "border-gray-300"
           }`}
         />
         {errors.customMessage && (
           <p className="text-red-500 text-sm mt-1">{errors.customMessage}</p>
         )}
+      </div>
+
+      {/* Invitation Template */}
+      <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">
+          <LayoutTemplate className="inline h-4 w-4 mr-1" />
+          Invitation Model
+        </label>
+        <select
+          name="invitationModel"
+          value={formData.invitationModel}
+          onChange={handleChange}
+          className="w-full px-4 py-3 border rounded-lg"
+          required
+        >
+          <option value="classic">Classic</option>
+          <option value="elegant">Elegant</option>
+          <option value="modern">Modern</option>
+          <option value="luxury">Luxury</option>
+        </select>
       </div>
 
       <div>
@@ -206,14 +272,17 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
           onChange={handleChange}
           placeholder="https://example.com/image.jpg"
           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
-            errors.backgroundImageUrl ? 'border-red-300' : 'border-gray-300'
+            errors.backgroundImageUrl ? "border-red-300" : "border-gray-300"
           }`}
         />
         {errors.backgroundImageUrl && (
-          <p className="text-red-500 text-sm mt-1">{errors.backgroundImageUrl}</p>
+          <p className="text-red-500 text-sm mt-1">
+            {errors.backgroundImageUrl}
+          </p>
         )}
         <p className="text-sm text-gray-500 mt-1">
-          Provide a URL to an image that will be used as the invitation background
+          Provide a URL to an image that will be used as the invitation
+          background
         </p>
       </div>
 
@@ -228,7 +297,7 @@ const EventForm = ({ onSubmit, loading = false, initialData = {} }) => {
           ) : (
             <Save className="h-4 w-4" />
           )}
-          <span>{loading ? 'Creating...' : 'Create Event'}</span>
+          <span>{loading ? "Creating..." : "Create Event"}</span>
         </button>
       </div>
     </form>
