@@ -13,6 +13,8 @@ const InvitePublicView = () => {
   useEffect(() => {
     const fetchInvitationData = async () => {
       try {
+
+        console.log("guestId", guestId);
         const guestResult = await firestoreService.guestPublicView(guestId);
 
         if (guestResult.success) {

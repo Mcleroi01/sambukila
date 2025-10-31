@@ -1,5 +1,5 @@
 import React from "react";
-import { QrCode } from "lucide-react";
+import QRCode from "qrcode.react";
 
 const ElegantInvite = ({ event, guest, helpers }) => {
   if (!event || !guest) return null;
@@ -109,7 +109,7 @@ const ElegantInvite = ({ event, guest, helpers }) => {
                   {event?.receptionAddress || "249 Turbot Street"}
                 </p>
                 <p className="text-white/60 text-xs italic mt-1">
-                  {event?.receptionTime
+                  {event?.time
                     ? `Commencing at ${helpers.formatTime(event.time)}`
                     : "Commencing at 5:00pm"}
                 </p>
@@ -147,9 +147,16 @@ const ElegantInvite = ({ event, guest, helpers }) => {
 
           <div className="flex justify-center mb-12">
             <div className="bg-white rounded-lg p-4">
-              <div className="w-32 h-32 bg-black flex items-center justify-center">
-                <QrCode className="w-24 h-24 text-white" />
+              <div className="w-48 h-48 flex items-center justify-center">
+                <QRCode 
+                  value={`${window.location.origin}/invite/${guest.id}`}
+                  size={160}
+                  level="H"
+                  includeMargin={true}
+                  renderAs="svg"
+                />
               </div>
+              <p className="text-xs text-center mt-2 text-gray-600">Scan to check-in</p>
             </div>
           </div>
         </div>

@@ -15,11 +15,7 @@ const GuestForm = ({
     invitationType: initialData.invitationType || "single",
     gender: initialData.gender || "",
     tableCode: initialData.tableCode || "",
-    secretCode: initialData.secretCode || "",
-    invitationType: initialData.invitationType || "single",
-    gender: initialData.gender || "",
-    tableCode: initialData.tableCode || "",
-    secretCode: initialData.secretCode || "",
+    secretCode: initialData.secretCode || ""
   });
   const [errors, setErrors] = useState({});
 

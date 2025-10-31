@@ -21,6 +21,7 @@
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-i18next": "^15.6.1",
+    "react-qr-scanner": "^1.0.0-alpha.11",
     "react-router-dom": "^7.7.0",
     "uuid": "^11.1.0"
   },

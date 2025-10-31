@@ -45,6 +45,7 @@ const GuestListPage = () => {
     });
 
     if (result.success) {
+      const inviteUrl = `${window.location.origin}/invite/${result.id}`;
       const newGuest = {
         id: result.id,
         ...guestData,

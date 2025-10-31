@@ -170,25 +170,25 @@ export const firestoreService = {
     }
   },
 
- guestPublicView: async (guestId) => {
-  try {
-    console.log("🔎 Searching guest with ID (via query):", guestId);
-    
-    const q = query(
-      collection(db, "guests"),
-      where("id", "==", guestId)
-    );
+  guestPublicView: async (guestId) => {
+    try {
+      console.log("🔎 Fetching guest document with ID:", guestId);
+      
+      const docRef = doc(db, "guests", guestId);
+      const docSnap = await getDoc(docRef);
 
-    const querySnapshot = await getDocs(q);
+      if (!docSnap.exists()) {
+        console.warn("🚫 Guest document not found with ID:", guestId);
+        return { success: false, error: "Guest not found" };
+      }
 
-    if (querySnapshot.empty) {
-      console.warn("🚫 Guest not found via query");
-      return { success: false, error: "Guest not found" };
-    }
-
-    // Si on trouve un résultat, on retourne le premier
-    const docSnap = querySnapshot.docs[0];
-    return { success: true, guest: { id: docSnap.id, ...docSnap.data() } };
+      return { 
+        success: true, 
+        guest: { 
+          id: docSnap.id, 
+          ...docSnap.data() 
+        } 
+      };
 
   } catch (error) {
     console.error("🔥 Error fetching guest via query:", error);
