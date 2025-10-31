@@ -1,0 +1,34 @@
+{
+  "appName": "SAMBUKILA",
+  "contactUs": "Fale Conosco",
+  "platformTitle": "SUA PLATAFORMA DE EVENTOS",
+  "heroTitle1": "Convide, Organize e Celebre",
+  "heroTitle2": "Eventos Inesquecíveis",
+  "heroDescription": "Gerencie convites, listas de convidados e confirmações para qualquer tipo de evento: aniversários, casamentos, conferências, festas, workshops e muito mais.",
+  "benefits": {
+    "title": "Por Que Escolher Nossa Plataforma",
+    "items": [
+      {
+        "title": "Fácil de Usar",
+        "description": "Interface intuitiva para todos os usuários"
+      },
+      {
+        "title": "Economize Tempo",
+        "description": "Automatize o gerenciamento de seus eventos"
+      },
+      {
+        "title": "Profissional",
+        "description": "Crie convites bonitos e personalizados"
+      },
+      {
+        "title": "Eficiente",
+        "description": "Acompanhe as confirmações em tempo real"
+      }
+    ]
+  },
+  "languages": {
+    "en": "Inglês",
+    "fr": "Francês",
+    "pt": "Português"
+  }
+}

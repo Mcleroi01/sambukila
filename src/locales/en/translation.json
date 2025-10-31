@@ -1,0 +1,34 @@
+{
+  "appName": "SAMBUKILA",
+  "contactUs": "Contact Us",
+  "platformTitle": "YOUR EVENT PLATFORM",
+  "heroTitle1": "Invite, Organize and Celebrate",
+  "heroTitle2": "Unforgettable Events",
+  "heroDescription": "Manage invitations, guest lists and confirmations for any type of event: birthdays, weddings, conferences, parties, workshops and more.",
+  "benefits": {
+    "title": "Why Choose Our Platform",
+    "items": [
+      {
+        "title": "Easy to Use",
+        "description": "Intuitive interface for all users"
+      },
+      {
+        "title": "Time Saving",
+        "description": "Automate your event management"
+      },
+      {
+        "title": "Professional",
+        "description": "Create beautiful, branded invitations"
+      },
+      {
+        "title": "Efficient",
+        "description": "Track RSVPs in real-time"
+      }
+    ]
+  },
+  "languages": {
+    "en": "English",
+    "fr": "French",
+    "pt": "Portuguese"
+  }
+}

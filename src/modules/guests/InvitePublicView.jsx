@@ -59,8 +59,12 @@ const InvitePublicView = () => {
     );
   }
 
+  console.log(" event", event.invitationModel);
+
   const TemplateComponent =
-    invitationTemplates[event.templateType || "classic"];
+    invitationTemplates[event.invitationModel || "classic"];
+
+  console.log("Rendering template:", TemplateComponent);
 
   if (!TemplateComponent) {
     return (

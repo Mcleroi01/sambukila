@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Clock,
   Shield,
@@ -14,6 +15,12 @@ import {
 
 function LandingPage() {
   const [isHovered, setIsHovered] = useState(false);
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language || 'en'; // Default to 'en' if undefined
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   const handleWhatsAppContact = () => {
     window.open("https://wa.me/244953629563", "_blank");
@@ -26,9 +33,36 @@ function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <span className="text-white text-sm font-normal tracking-[0.25em] uppercase">
-                SAMBUKILA
-              </span>
+              <div className="flex items-center space-x-4">
+                <span className="text-white text-sm font-normal tracking-[0.25em] uppercase">
+                  {t('appName')}
+                </span>
+                <div className="relative group">
+                  <button className="text-white text-xs uppercase tracking-wider flex items-center">
+                    {currentLanguage.toUpperCase()}
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-50">
+                    {[
+                      { code: 'en', name: 'English' },
+                      { code: 'fr', name: 'Français' },
+                      { code: 'pt', name: 'Português' }
+                    ].map(({ code, name }) => (
+                      <button
+                        key={code}
+                        onClick={() => changeLanguage(code)}
+                        className={`block w-full text-left px-4 py-2 text-sm ${
+                          currentLanguage.startsWith(code) ? 'bg-gray-100 text-black' : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        {name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
             <button
               onClick={handleWhatsAppContact}
@@ -67,17 +101,15 @@ function LandingPage() {
         <div className="relative text-center text-white z-10 animate-fade-in">
           <div className="mb-8">
             <p className="text-xs font-light tracking-[0.4em] mb-8 opacity-90 uppercase animate-slide-up">
-              SUA PLATAFORMA DE EVENTOS
+              {t('platformTitle')}
             </p>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-[1.1] tracking-wide animate-slide-up-delay">
-              Convide, Organize e Celebre
+              {t('heroTitle1')}
               <br />
-              <span className="font-light italic">Eventos Inesquecíveis</span>
+              <span className="font-light italic">{t('heroTitle2')}</span>
             </h1>
             <p className="text-lg mt-4 max-w-2xl mx-auto opacity-90">
-              Gerencie convites, listas de convidados e confirmações para
-              qualquer tipo de evento: aniversários, casamentos, conferências,
-              festas, workshops e muito mais.
+              {t('heroDescription')}
             </p>
           </div>
         </div>
